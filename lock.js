@@ -1,5 +1,5 @@
 var context;
-	var main = function () {
+var lockinit = function () {
 	var canvas = document.getElementById("canvas");
 	context = canvas.getContext('2d');
 	drawLock();
@@ -48,5 +48,3 @@ var drawDial = function(rot) {
 	}
 	context.restore();
 }
-
-window.onload = main;
