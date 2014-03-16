@@ -47,4 +47,5 @@ var drawDial = function(rot) {
 		context.fill();
 	}
 	context.restore();
+
 }

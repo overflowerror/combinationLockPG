@@ -1,4 +1,4 @@
-var onSucess = function(heading) {
+var onSuccess = function(heading) {
     var element = document.getElementById('heading');
     element.innerHTML = 'Heading: ' + heading;
 };
@@ -8,7 +8,7 @@ var onErrors = function() {
 };
 
 var startup = function(){
-	var watchID = navigator.compass.watchHeading(onSuccess, onErrors);
+	var watchID = navigator.compass.getCurrentHeading(onSuccess, onErrors);
 	lockinit();
 }
 window.onload = startup;
