@@ -26,8 +26,12 @@
 	<preference name="orientation"				value="portrait" />
 
 	<gap:plugin name="org.apache.cordova.device-orientation" />
-
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.myap" android:versionCode="1">
+	
+	<feature name="Compass">
+    	<param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
+	</feature>
+    
+	<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.myap" android:versionCode="1">
         <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
@@ -36,7 +40,9 @@
         android:resizeable="true"
         android:anyDensity="true"
         />
-        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.INTERNET" /> 
+	    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
     </manifest>
