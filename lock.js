@@ -1,4 +1,7 @@
 var context;
+
+const countOfNumbers = 32;
+
 var lockinit = function () {
 	var canvas = document.getElementById("canvas");
 	context = canvas.getContext('2d');
@@ -39,13 +42,18 @@ var drawDial = function(rot) {
 	context.closePath();
 	context.fill();
 	context.fillStyle = "#fff";
-	var num = 32;
-	for (var i = 0; i < num; i++) {
+	for (var i = 0; i < countOfNumbers; i++) {
 		context.beginPath();
-		context.fillText(i, 72 * Math.cos(2 * Math.PI / num * i) - 7, 72 * Math.sin(2 * Math.PI / num * i) + 3);
+		context.fillText(i + 1, 72 * Math.cos(2 * Math.PI / countOfNumbers * i - Math.PI / 2) - 4, 72 * Math.sin(2 * Math.PI / countOfNumbers * i - Math.PI / 2) + 3);
 		context.closePath();
 		context.fill();
 	}
 	context.restore();
+}
 
+var angleToNum = function(angle) {
+	var tmp = parseInt(angle / Math.PI / 2 * countOfNumbers) % countOfNumbers;
+	if (tmp < 0)
+		tmp += countOfNumbers;
+	return tmp + 1;
 }

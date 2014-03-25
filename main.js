@@ -1,14 +1,7 @@
 function onSuccess(acceleration) {
-    /*alert('Acceleration X: ' + acceleration.x + '\n' +
-          'Acceleration Y: ' + acceleration.y + '\n' +
-          'Acceleration Z: ' + acceleration.z + '\n' +
-          'Timestamp: '      + acceleration.timestamp + '\n' +
-		  ((Math.atan(acceleration.y / acceleration.x))/Math.PI*180)+90
-		);*/
-
 	var element = document.getElementById('textfeld');
-    element.innerHTML = "x:"+  acceleration.x + "y:"+  acceleration.y +" <br />"+ "<br />"+ "<br />"+getAngle(acceleration.x, acceleration.y);
-	drawDial(-getAngle(acceleration.x, acceleration.y)* Math.PI/180) ;
+	element.innerHTML = "x:"+  acceleration.x + "y:"+  acceleration.y +" <br />"+ "<br />"+ "<br />"+getAngle(acceleration.x, acceleration.y);
+	handleAngle(getAngle(acceleration.x, acceleration.y) / 180 * Math.PI);
 };
 function getAngle (x, y) {
  		if (x == 0)
@@ -33,3 +26,5 @@ var startup = function(){
 var options = { frequency: 100 };
 
 document.addEventListener("deviceready", startup, false);
+
+//window.onload = startup;
