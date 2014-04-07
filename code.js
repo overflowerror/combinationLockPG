@@ -2,7 +2,7 @@ const right = 0;
 const left = 1;
 const non = 2;
 
-const hyst = 2;
+const hyst = 0;
 const toll = 2;
 
 var code = [3, 14, 25, 9, 26];
