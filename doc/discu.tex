@@ -1,0 +1,3 @@
+Ursprünglich wurde versucht, das Programm über den Kompass anzusteuern, da dieser direkt einen Winkel zurückgibt. Da sich allerdings herausstellte, dass der eingebaute Kompass zu ungenau ist, entschied sich das Team für das Auslesen des Beschleunigungssensors.\\
+\\
+Das Programm funktioniert prinzipiell, allerdings sind die durch den Sensor verursachten Ungenauigkeiten so stark, dass sie in der \texttt{handleAngle}-Funktion einen falsch-interpretierten Richtungswechsel triggern, was das Ergebnis unbrauchbar verfälscht. Um dieses Verhalten zu kompensieren, wurde eine Hysterese eingebaut. Diese funktionierte allerdings nicht wie gewünscht, also wurde diese auf 0 gestellt.

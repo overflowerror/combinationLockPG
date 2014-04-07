@@ -1,0 +1,44 @@
+Mittels der folgenden Codezeile wird darauf gewartet, dass das Gerät bereit ist und die Sensoren verwendet werden können.
+\begin{lstlisting}
+document.addEventListener("deviceready", startup, false);
+\end{lstlisting}
+Wenn dieser Befehl nicht vorhanden ist, gibt die App einen Fehler zurück, weil der angesprochene Sensor aus der Sicht der App nicht vorhanden ist.
+\\
+Daraufhin wird der folgendeBefehl ausgeführt.
+\begin{lstlisting}
+watchID = navigator.accelerometer.watchAcceleration(onSuccess,
+onError, options);
+\end{lstlisting}
+Dieser sorgt dafür, dass im eingestellten Intervall die Beschleunigungen gemessen werden.
+In diesem Fall wurde eingestellt, dass die Sensoren alle 100ms ($ \widehat{=} $ 10 Hz) abgefragt werden. \\
+Wenn diese Abfrage funktioniert, wird die Funktion \texttt{onSucess} verwendet, bei einem Fehlschlag \texttt{onError}.
+\\\\
+Es wird der Neigungswinkel des Gerätes bestimmt und der Funktion \texttt{handleAngle} mitgegeben.\\
+Diese rechnet mit Hilfe der Funktion \texttt{angleToNum} vom Winkel auf die entsprechenden Zahl der Zahlenscheibe um.\\
+Nun folgt eine Prüfung auf bestimmte Sonderfälle, welche das Ergebnis beeinflussen:
+\begin{itemize}
+\item Ist der vorige Wert minus den aktuellen Wert größer als zwei Drittel der Wählscheibe, so kann davon ausgegangen werden, dass über 0 gedreht wurde.\\
+Resultat: Die Richtung wird auf \enquote{links} gesetzt.
+\item Ist der aktuelle Wert minus den vorigen Wert größer als zwei Drittel der Wählscheibe, so kann davon ausgegangen werden, dass über 0 gedreht wurde.\\
+Resultat: Die Richtung wird auf \enquote{rechts} gesetzt.
+\item Ist der aktuelle Wert kleiner als der vorige, so wird die Richtung auf \enquote{rechts} gesetzt.
+\item Ist der vorige Wert kleiner als der vorige, so wird die Richtung auf \enquote{links} gesetzt.
+\item Sonst wird die Richtung beibehalten.
+\end{itemize}
+
+Sollte die Richtung nun ungleich der alten Richtung sein (und ungleich der Nullrichtung), so wird der aktuelle Wert zum Array der Eingangewerte hinzugefügt. \\
+Sonst wird, im Falle dessen, dass nach rechts (Richtung ist \enquote{rechts}) gedreht wird, die Anzahl der Nullübergänge geprüft. Ist diese größer als 2, so wird das Array der Eingangswerte gelöscht.\\
+\\
+Nun wird noch die alte Richtung durch die neue Richtung, sowie der alte Wert durch den neuen Wert, ersetzt.\\
+\\
+Zum Schluss wird noch das Ziffernblatt aktualisieren, dies ist jedoch trivial.\\
+\\
+Die Funktion, die beim Click auf den Button ausgelöst wird, macht folgendes:
+\begin{itemize}
+\item Ist die Länge des einprogrammierten Codes ungleich der Länge des eingegebenen Codes, so kann davon ausgegangen werden, dass der Code falsch ist.
+\item Es wird Schritt für Schritt durch das Eingangsarray gelaufen, und bei jedem Eintrag geprüft, ob der absolute Abstand des richtigen Wertes zum eingegebenen größer ist, als eine gewisse Tolleranzgrenze (standardmäßig 2). Ist das der Fall, so wird der Code als falsch angesehen.
+\end{itemize}
+Ist das Ergebnis dieser Prüfung, dass der Code falsch ist, so wird die Reihe der eingegebenen Zahlen ausgegeben, und das Eingangsarray zurückgesetzt.\\
+Ist der Code richtig, so wird ein Youtube-Video geöffnet (\href{http://www.youtube.com/watch?v=aObeQUNELm4}{Link}).\\
+\\
+Für Details, siehe Source-Code.

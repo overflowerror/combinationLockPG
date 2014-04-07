@@ -1,0 +1,16 @@
+Es ist durch ein Plugin in PhoneGap auf die Beschleunigungssensoren des mobilen Gerätes zuzugreifen.\\
+Dieses gibt die Beschleunigung in x, y und z-Richtung zurück. Für weitere Überlegungen werden nur x und y-Richtung verwendet.\\
+Wenn das Handy mit dem Display zum Benutzer und der Kopf des Gerätes nach oben gewandt ist, so zeigt die positive y-Beschleunigung nach unten (normalerweise Erdbeschleunigung: $g \simeq 9.8 \frac{m}{s}$)
+Für die Umrechnung von den Beschleunigungen in den Neigungswinkel wird \autoref{formel} verwendet.
+\begin{equation}
+\phi = - \arctan(\frac{y}{-x}) \cdot \frac{360°}{2 \cdot \pi} - 90°
+\label{formel}
+\end{equation}
+Diese Gleichung ist allerdings nur bei  $ x < 0 $ gültig. Für $ x > 0 $ wird daher die \autoref{formel2} verwendet $ \Rightarrow $ Es ist eine Fallunterscheidung notwendig.
+
+\begin{equation}
+\phi = 360 - \arctan(\frac{y}{-x}) \cdot \frac{360°}{2 \cdot \pi} - 90°
+\label{formel2}
+\end{equation}
+
+Zusätzlich muss der Fall $ x = 0 $ verhindert werden, da sonst eine Division durch 0 vorliegt. Dies wird durch Addieren eines vernachlässigbar kleinem Wert an $ x $, im Falle dessen, dass $ x = 0 $, verhindert.
