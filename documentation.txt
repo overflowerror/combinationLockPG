@@ -1,0 +1,18 @@
+Die Funktion, welche die App erfüllen soll, ist ein Zahlendrehschloss, wie es zum Beispiel bie den Spinden der Schüler im Einsatz ist.
+Die Drehfunktion wurde mittels des Beschleunigungssensors realisiert. Dies bedeutet jedoch, dass das Handy senkrecht gehalten werden muss und nicht zum Beispiel auf einem Tisch liegen darf.
+Zunächst war versucht worde, diese Funktion mittels des Kompasses zu realisieren, durch die Ungenauigkeit und die starken Schwnkungen ist dieser jedoch nicht geeignet gewesen.
+
+Die Beschleunigungen werden alle 100ms abgefragt. Anschließend werden aus den gemessenen Beschleunigungen mittels Arkustangens der Winkel berechnet.
+
+Die App wurde mittels Phonegap erstellt und dann auf den Handys der Projektteilnehmer getestet. 
+
+Zuerst musste die config.xml bearbeitet werden:
+
+	<gap:plugin name="org.apache.cordova.device-orientation" /> 	//zum Einbinden des Kompasses, später nicht mehr benötigt
+	<gap:plugin name="org.apache.cordova.device-motion" />		//Zum Einbinden der Beschleunigungssensoren
+	<preference name="orientation"				value="portrait" /> //wird benötigt, damit die Anzeige sich nicht dreht
+
+Dann wurde eine Routine entwickelt die die aktuellen Beschleunigungen abruft:
+
+	watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError,options);
+
