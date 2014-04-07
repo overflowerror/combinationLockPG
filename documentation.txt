@@ -1,0 +1,5 @@
+Die Funktion, welche die App erfüllen soll, ist ein Zahlendrehschloss, wie es zum Beispiel bie den Spinden der Schüler im Einsatz ist.
+Die Drehfunktion wurde mittels des Beschleunigungssensors realisiert. Dies bedeutet jedoch, dass das Handy senkrecht gehalten werden muss und nicht zum Beispiel auf einem Tisch liegen darf.
+Zunächst war versucht worde, diese Funktion mittels des Kompasses zu realisieren, durch die Ungenauigkeit und die starken Schwnkungen ist dieser jedoch nicht geeignet gewesen.
+
+Die Beschleunigungen werden alle 100ms abgefragt. Anschließend werden aus den gemessenen Beschleunigungen mittels Arkustangens der Winkel berechnet.
